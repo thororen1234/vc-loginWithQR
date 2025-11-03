@@ -29,7 +29,7 @@ type Spinner = ComponentType<Omit<HTMLAttributes<HTMLDivElement>, "children"> & 
     Type: typeof SpinnerTypes;
 };
 
-export const Spinner = findComponentByCodeLazy('"pulsingEllipsis"') as Spinner;
+export const Spinner = findComponentByCodeLazy('"pulsingEllipsis"') as unknown as Spinner;
 
 export const QrCodeIcon = findComponentByCodeLazy("0v3ZM20");
 

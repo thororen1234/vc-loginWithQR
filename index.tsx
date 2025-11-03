@@ -5,9 +5,11 @@
  */
 
 import { definePluginSettings } from "@api/Settings";
+import { Paragraph } from "@components/Paragraph";
+import { EquicordDevs } from "@utils/constants";
 import { getIntlMessage } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
-import { Button, Forms, Menu } from "@webpack/common";
+import { Button, Menu } from "@webpack/common";
 import { ReactElement } from "react";
 
 import { preload, unload } from "./images";
@@ -17,12 +19,7 @@ import openQrModal from "./ui/modals/QrModal";
 export default definePlugin({
     name: "LoginWithQR",
     description: "Allows you to login to another device by scanning a login QR code, just like on mobile!",
-    authors: [
-        {
-            name: "Nexpid",
-            id: 853550207039832084n,
-        },
-    ],
+    authors: [{ name: "Nexpid", id: 853550207039832084n }],
 
     settings: definePluginSettings({
         scanQr: {
@@ -31,9 +28,9 @@ export default definePlugin({
             component() {
                 if (!Vencord.Plugins.plugins.LoginWithQR.started)
                     return (
-                        <Forms.FormText>
+                        <Paragraph>
                             Enable the plugin and restart your client to scan a login QR code
-                        </Forms.FormText>
+                        </Paragraph>
                     );
 
                 return (
@@ -62,7 +59,7 @@ export default definePlugin({
             replacement: {
                 // Find the Edit User Profile button and insert our custom button.
                 // A bit jank, but whatever
-                match: /,(\(.{1,90}#{intl::USER_SETTINGS_EDIT_USER_PROFILE}\)}\))/,
+                match: /,(\(.{1,90}#{intl::USER_SETTINGS_EDIT_USER_PROFILE}\),onClick:\i\}\))/,
                 replace: ",$self.insertScanQrButton($1)",
             },
         },
@@ -77,7 +74,7 @@ export default definePlugin({
 
         // Insert a Scan QR Code button in the Settings sheet
         {
-            find: "useGenerateUserSettingsSections",
+            find: ".isInputProfileCustom()",
             replacement: {
                 match: /\.CONNECTIONS/,
                 replace: "$&,\"SCAN_QR_CODE\""
