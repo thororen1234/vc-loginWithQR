@@ -54,6 +54,7 @@ export default definePlugin({
             },
         },
         // Insert a Scan QR Code button in the My Account tab
+        /* broken
         {
             find: "UserSettingsAccountProfileCard",
             replacement: {
@@ -63,6 +64,7 @@ export default definePlugin({
                 replace: ",$self.insertScanQrButton($1)",
             },
         },
+        */
         // Insert a Scan QR Code MenuItem in the Swith Accounts popout
         {
             find: 'id:"manage-accounts"',

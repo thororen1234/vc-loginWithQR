@@ -138,7 +138,7 @@ function VerifyModal({
                             size="md"
                             weight="semibold"
                             color="text-normal"
-                            style={{ width: "30rem" }}
+                            style={{ width: "30rem", textAlign: "center" }}
                         >
                             {getIntlMessage("QR_CODE_LOGIN_SUCCESS_FLAVOR")}
                         </BaseText>
